@@ -1,22 +1,24 @@
-
-
-
 class CrudService {
-    constructor() {}
-  
-    async create(params) {
-      try {
-        let table = [];
-        for (let i = 1; i < 21; i++) {
-          let multiply = params.num * i;
-          table.push(`${params.num} * ${i} = ${multiply}`);
+  constructor() {}
+
+  async fetchData(params) {
+    try {
+      let number = Number(params.num);
+      let factorial = 1;
+      if (number === 0) {
+        returnfactorial;
+      } else if (number < 1) {
+        return factorial;
+      } else {
+        for (let i = 1; i < number + 1; i++) {
+          factorial *= i;
         }
-        return table;
-      } catch (e) {
-        console.log(e);
       }
+      return `Factorial of ${number} is ${factorial}`;
+    } catch (e) {
+      console.log(e);
     }
   }
-  
-  module.exports = CrudService;
-  
+}
+
+module.exports = CrudService;

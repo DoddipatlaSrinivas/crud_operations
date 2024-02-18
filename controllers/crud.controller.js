@@ -1,23 +1,26 @@
-const MarkupService = require("../services/crud/crudService");
+const CrudService = require("../services/crud/crudService");
 var mysqldb = require("../config/MysqlDB");
-const Response = require("../utils/Response");
+// const Response = require("../utils/Response");
 
-const create = async function (req, res) {
+const fetch = async function (req, res) {
   try {
-    const markupObj = req.body;
-    const markupService = new MarkupService(mysqldb);
-    const result = await markupService.create(markupObj);
-    res.send(Response.success(result));
+    const params = req.query;
+    const crudService = new CrudService(mysqldb);
+    const result = await crudService.fetchData(params);
+    // res.send(Response.success(result));
+    console.log(result);
+    res.send(result);
   } catch (e) {
-    logger.error(e);
-    if (e.message) {
-      res.status(404).send(Response.error(e));
-    } else {
-      res.status(500).send(Response.error(e));
-    }
+    // logger.error(e);
+    // if (e.message) {
+    //   res.status(404).send(Response.error(e));
+    // } else {
+    //   res.status(500).send(Response.error(e));
+    // }
+    console.log(e);
   }
 };
 
 module.exports = {
-    create,
+  fetch
 };
